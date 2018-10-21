@@ -1,5 +1,46 @@
 <p id="notice"><%= notice %></p>
 
+<header class="page-header">
+  <div class="header-block-container">
+    <h1><%= @book.title %></h1>
+    <% if current_user.present? %>
+      <%= link_to 'Back', books_path, class: 'button-white'=%>
+    <% end %>  
+  </div>
+</header> 
+
+<section class="book-wrapper">
+  <div class="books-block-container">
+    <% @books.each do |book| %>
+      <div class="book">
+        <div class="book-cover">
+        <% if book.image_url %>
+          <%= image_tag book.image_url %>
+        <% end %>
+      </div>
+      <div class="text-block">
+        <br>
+        <br>
+        <h1><%= @book.title %></h1>
+        <h6><%= link_to @book.author.full_name, author_path(@book.author) %></h6>
+        <br>
+        <br>
+        <p><%= @book.description %></p>
+        <% if current_user.present? %>  
+          <%= link_to 'Write a review', new_book_review_path(@book), class: 'button-primary' %>
+          <%= link_to 'Edit', edit_book_path(@book) %>
+         <% end %>  
+
+
+
+        <h5><%= link_to book.title, book_path(book) %></h5>
+        <h6><%= link_to book.author.full_name, author_path(book.author) %></h6>
+      </div>
+    </div>
+    <% end %>
+  </div>  
+</section>         
+
 <p>
   <strong>Title:</strong>
   <%= @book.title %>

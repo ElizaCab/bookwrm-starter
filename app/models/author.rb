@@ -1,4 +1,5 @@
 class Author < ApplicationRecord
+	has_many :books, dependent: :destroy
 
 	scope :alphabetical, -> { order(last_name: :asc) }
 	

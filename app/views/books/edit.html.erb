@@ -1,4 +1,9 @@
-<h1>Editing Book</h1>
+<header class="page-header">
+  <div class="header-block-container">
+    <h1>Editing Book</h1>
+    <%= link_to 'Back', books_path, class: 'button-white'=%>
+  </div>
+</header>   
 
 <%= render 'form', book: @book %>
 
